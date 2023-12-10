@@ -73,9 +73,19 @@ func handleInput(w io.Writer, input string, exit chan<- struct{}) error {
 
 	// Check for built-in commands.
 	// New builtin commands should be added here. Eventually this should be refactored to its own func.
-	//using bash builtins
+	//using bourne builtins
 	
 	switch name {
+	case "break":
+		return builtins.Break(args...)
+	case "continue":
+		return builtins.Continue(args...)
+	case "return":
+		return builtins.Return(args...)
+	case "test":
+		return builtins.Test(args...)
+	case "readonly":
+		return builtins.Readonly(args...)
 	case "cd":
 		return builtins.ChangeDirectory(args...)
 	case "env":
